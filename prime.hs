@@ -29,5 +29,46 @@ mxmInt l = lstf max l
 firstOn f x []                           = [] 
 firstOn f x (y:ys) | (f x y) == True     = ys 
                    | otherwise           = y : (firstOn f x ys)
-
 removeFst x l = firstOn (==) x l
+
+-- Ex 1.13 p16
+count :: Char -> String -> Integer
+count c []                 = 0
+count c (x:xs) | x == c    = 1 + (count c xs)
+               | otherwise = count c xs
+
+-- Ex 1.14 p16
+t_appendR :: String -> String -> Integer -> String
+t_appendR c s i | i < 0     = error "impossible to append negative times" 
+              | i == 0    = c            
+              | otherwise = s ++ (t_appendR c c (i - 1))
+
+t_blowupIdx :: Integer -> String -> String
+t_blowupIdx i []     = ""
+t_blowupIdx i (x:xs) = (t_appendR [x] [x] i) ++ (t_blowupIdx (i + 1) xs) 
+
+t_blowup :: String -> String
+t_blowup s = t_blowupIdx 1 s
+
+-- Solution introduces nicely the copy of chars concept
+-- already transforming Char -> String instead of x -> [x] as in t_blowupIdx
+--- resulting in a cleaner solution
+copy :: Int -> Char -> String
+copy 0 c       = []
+copy n c       = c : (copy (n - 1) c) 
+
+-- the rest is based on same principle
+blowup :: String -> String
+blowup s = blowup' s 1
+
+blowup' :: String -> Int -> String
+blowup' [] n     = []
+blowup' (x:xs) n = (copy n x) ++ (blowup' xs (n + 1))
+
+-- Ex 1.15 p16
+mnmChr :: String -> Char
+mnmChr x = lstf min x
+
+srtString :: String -> String
+srtString [] = []
+srtString x  = m : srtString((removeFst m x)) where m = mnmChr x
