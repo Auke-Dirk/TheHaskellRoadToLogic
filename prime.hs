@@ -17,7 +17,7 @@ prime0 n | n < 1          = error "not a positive integer"
 
 -- Ex 1.9 p14
 -- do not know yet how this type declaration goes 
--- lstf :: Func -> [Integer] -> Integer
+-- lstf :: (Ord a) => a -> a -> a -> [Integer] -> Integer
 lstf f []     = error "no elements in list"
 lstf f [x]    = x
 lstf f (x:xs) = f x (lstf f xs)
@@ -40,8 +40,8 @@ count c (x:xs) | x == c    = 1 + (count c xs)
 -- Ex 1.14 p16
 t_appendR :: String -> String -> Integer -> String
 t_appendR c s i | i < 0     = error "impossible to append negative times" 
-              | i == 0    = c            
-              | otherwise = s ++ (t_appendR c c (i - 1))
+                | i == 0    = c            
+                | otherwise = s ++ (t_appendR c c (i - 1))
 
 t_blowupIdx :: Integer -> String -> String
 t_blowupIdx i []     = ""
@@ -72,3 +72,23 @@ mnmChr x = lstf min x
 srtString :: String -> String
 srtString [] = []
 srtString x  = m : srtString((removeFst m x)) where m = mnmChr x
+
+-- Ex 1.17
+prefix :: String -> String -> Bool
+prefix [] y          = True
+prefix x []          = False
+prefix (x:xs) (y:ys) = (x == y) && (prefix xs ys)
+ 
+substring :: String -> String -> Bool
+substring [] ys    = True -- i had forgotten the substring [] [] case
+substring x []     = False
+substring x (y:ys) | prefix x (y:ys) = True
+                   | otherwise = substring x ys 
+
+-- Thought the answer provided was a bit overdone
+substring' :: String -> String -> Bool 
+substring' [] ys         = True 
+substring' (x:xs) []     = False
+substring' (x:xs) (y:ys) = ((x==y) && (prefix xs ys)) || (substring' (x:xs) ys)
+
+
