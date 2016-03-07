@@ -91,4 +91,24 @@ substring' [] ys         = True
 substring' (x:xs) []     = False
 substring' (x:xs) (y:ys) = ((x==y) && (prefix xs ys)) || (substring' (x:xs) ys)
 
+-- Ex 1.18 p18
+-- too many :)
+
+-- Ex 1.19
+-- use interpreter
+
+pfactors :: Integer -> [Integer]
+pfactors n | n < 1     = error "argument not positive"
+           | n == 1    = [] 
+           | otherwise = p : pfactors (div n p) where p = ld n
+           
+-- Ex 1.20 p22
+lengths ::  [[a]] -> [Int]
+lengths x = map length x
+
+-- Ex 1.21 p22
+sumLengths :: [[a]] -> Int
+sumLengths x = sum (lengths x) -- same as sum( map length x) see ex 1.20
+
+
 
