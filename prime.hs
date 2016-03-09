@@ -110,5 +110,21 @@ lengths x = map length x
 sumLengths :: [[a]] -> Int
 sumLengths x = sum (lengths x) -- same as sum( map length x) see ex 1.20
 
+prime :: Integer -> Bool
+prime = prime0
 
+-- Example 1.23 p23
+primes1 :: [Integer]
+--primes1 = 2 : filter prime [3..]
+primes1 = filter prime [2..]
 
+ldp :: Integer -> Integer
+ldp = ldpf primes1
+
+ldpf :: [Integer] -> Integer -> Integer
+ldpf (p:ps) n | divides p n  = p
+              | p^2 >n       = n
+              | otherwise    = ldpf ps n
+              
+-- Ex 1.24
+-- Instead of assinging the value of ldpf you have replaced the definition of ldp by that of ldpf
