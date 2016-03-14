@@ -1,4 +1,5 @@
 {-# LANGUAGE ParallelListComp #-}
+{-# LANGUAGE FlexibleInstances #-}
 
 --EX 2.2 p33
 -- P Q | P X Q
@@ -96,4 +97,47 @@ formula3 p q = p
 formula4 p q = (p <+> q) <+> q
 
 
+class TF p where
+    valid :: p -> Bool
+    lequiv :: p -> p -> Bool
 
+instance TF Bool where
+    valid = id
+    lequiv f g = f == g 
+    
+instance TF p => TF (Bool -> p) where
+   valid f = valid (f True) && valid (f False)
+   lequiv f g = (f True) `lequiv` (g True) &&
+                (f False) `lequiv` (g False)
+
+
+-- Ex 2.13 p48
+dml1 = valid (not True <=> False)
+dml2 = valid (not False ==> True)
+dml3 = valid (\ p -> p ==> False <=> not p)
+dml3'= lequiv (\ p -> p ==> False) (\p -> not p)
+dml4 = valid (\ p -> (p || True ) ==> True) 
+dml5 = valid (\ p -> (p && False) ==> False) 
+
+idl1 = valid (\ p -> (p || False) <=> p)
+idl2 = valid (\ p -> (p && True) <=> p)
+
+exm = valid (\ p -> (p || not p) <=> True)
+cnt = valid (\ p -> (p && not p) <=> False)
+
+-- ex 2.15 p48
+contrad1 :: (Bool -> Bool) -> Bool
+contrad1 f = (f True) == False && (f False) == False
+
+contrad2 :: (Bool -> Bool -> Bool) -> Bool
+contrad2 f = and [not (f x y)  | x <- [True,False],
+                                 y <- [True,False]]                         
+
+contrad3 :: (Bool -> Bool -> Bool -> Bool) -> Bool
+contrad3 f = and [not (f x y z)  | x <- [True,False],
+                                   y <- [True,False],      
+                                   z <- [True,False]]
+
+-- ex 2.16 p49
+--   -Ex[x](x^2 + 1 = 0)
+-- 
