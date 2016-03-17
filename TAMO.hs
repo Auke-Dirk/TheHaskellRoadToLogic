@@ -138,6 +138,33 @@ contrad3 f = and [not (f x y z)  | x <- [True,False],
                                    y <- [True,False],      
                                    z <- [True,False]]
 
--- ex 2.16 p49
+-- Ex 2.16 p49
 --   -Ex[x](x^2 + 1 = 0)
 -- 
+
+-- Ex 2.17 p49
+-- x < y < z <=> (x < y) && (y < z) <=> not ((x < y) && ( y < z)) 
+
+-- Ex 2.18.1 p49
+-- A <=> B  ==
+--          == (A => B) ^ (B => A)           comm
+--          == (-B => -A) ^ (-A => -B)       contra
+--          == (-A => -B) ^ (-B => -A)       A ^ B <=> B ^ A
+--          == -A <=> -B                     comm
+
+-- sub A, -A for 2.18.2
+
+-- Ex 2.19 p49
+-- No matter the truth values of the proposition letters inside A,B iff A <=> B is logically valid
+
+
+
+-- Ex 2.20 
+-- F lequiv (\ p q -> not p ==> q) (\ p q ->  p ==> not q)
+-- F lequiv (\ p q -> not p ==> q) (\ p q ->  q ==> not p)
+-- T lequiv (\ p q -> not p ==> q) (\ p q ->  not q ==> p)
+-- F lequiv (\p q r -> p ==> (q ==> r)) (\p q r -> (q ==> p) ==> r)
+-- F lequiv (\p q r -> p ==> (q ==> r)) (\p q r -> (p ==> q) ==> r)
+-- T lequiv (\ p q -> (p ==> q) ==> p) (\ p q -> p)
+-- F lequiv (\ p q r -> p || q ==> r) (\ p q r -> (p ==> r) && (q ==> r))
+
