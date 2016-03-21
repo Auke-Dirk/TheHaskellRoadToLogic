@@ -168,3 +168,47 @@ contrad3 f = and [not (f x y z)  | x <- [True,False],
 -- T lequiv (\ p q -> (p ==> q) ==> p) (\ p q -> p)
 -- F lequiv (\ p q r -> p || q ==> r) (\ p q r -> (p ==> r) && (q ==> r))
 
+-- Ex 2,21
+-- 1. q ==> p
+-- 2. 2^4
+-- 3. :)
+-- 4 yes will always work
+-- 5 rows = 2^3 = 8, 2^8 , expressions
+
+
+
+-- Ex 2.22 Rl < Rr => Rm = (Rl + Rr) / 2
+
+-- Vx(Ax => (Bx => Cx))
+--    Ax => (Bx => Cx)
+--        / \
+--      Ax  Bx => Cx
+--            / \              
+--          Bx   Cx       
+      
+-- Ex(Ax ^ Bx)
+--    Ax ^ Bx
+--      / \
+--     Ax  Bx  
+
+-- ExAx ^ ExBx
+--     / \
+-- ExAx   ExBx
+--   Ax     Bx
+
+
+-- Ex 2.26 p53
+-- 1. ExEy( x&Q ^ y&Q ^ x < y),  Ex&QEy&Q(x < y)
+-- 2. Vx(x&R => Ey(y&R ^ x < y),  Vx&REy&R(x < Y)
+-- 3.Vx(x&Z => Em,n(m&N ^ n&N ^ x = m - n)),  Vx&ZEn,m&N( x = m - n)
+
+-- Ex 2.27 p53
+-- 1. Vx&QEm,n&Z( n/=0 ^ x = m/n),  Vx(x&Q => Em,n( m&Z ^ n&Z ^ n/= 0 ^ x = m/n))
+-- 2. Vx&FVy&D((Oxy => Bxy),  Vx(x&F => Vy(y&D ^ Oxy => Bxy)) // Vx(Fx => Vy(Dy => (Oxyu => Bxy))) // why?
+
+
+
+
+
+
+
