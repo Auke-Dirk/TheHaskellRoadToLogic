@@ -206,6 +206,25 @@ contrad3 f = and [not (f x y z)  | x <- [True,False],
 -- 1. Vx&QEm,n&Z( n/=0 ^ x = m/n),  Vx(x&Q => Em,n( m&Z ^ n&Z ^ n/= 0 ^ x = m/n))
 -- 2. Vx&FVy&D((Oxy => Bxy),  Vx(x&F => Vy(y&D ^ Oxy => Bxy)) // Vx(Fx => Vy(Dy => (Oxyu => Bxy))) // why?
 
+-- Ex 2.31
+-- 1. Ex(x^2 + 1 = 0)
+-- 2. not En&NVm&N(m <= n)
+-- 3. not Ex( x&N ^ x > 1 ^ x < 13 ^ x|13)
+-- 4. n & N ^ ( not Ex x&N ^ x > 1 ^ x < n ^ x|n)
+-- 5. Vm(m&N => En(n&M ^ n > m ^ o & N ^ ( not Ex x&N ^ x > 1 ^ x < o ^ x|o)))
+-- Nice buildup from 3,4,5
+
+-- Ex 2.32
+-- 1. VxL(x,d)    VxLxd
+-- 2. VxLdx
+-- 3. Vx(Mx ==> M'x)
+-- 4. Ex(Bx ^ not Fx)
+
+-- Ex 2.33
+-- 1. Vx(Dx ^ Bx => not B'y)
+-- 2. Vx(Gx => not G'x)
+-- 3. VxVy((Fxy ^ Fxd) ==> Fyd)
+-- 4. Ve > 0 En&VVk&N( k>= n => 1/k < e)
 
 
 
